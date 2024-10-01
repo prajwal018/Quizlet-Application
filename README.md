@@ -77,8 +77,8 @@ The project is divided into multiple modules:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/microservices-project.git
-    cd microservices-project
+    git clone https://github.com/prajwal018/Quizlet-Application.git
+    cd Quizlet-Application
     ```
 
 2. **Build and Run the Eureka Server:**
@@ -110,7 +110,7 @@ The project is divided into multiple modules:
     ```
 
 6. **Access Services:**
-   - Eureka Server: `http://localhost:8761`
+   - Eureka Server: `http://localhost:8765`
    - Question Service: `http://localhost:8081`
    - Quiz Service: `http://localhost:8082`
    - API Gateway: `http://localhost:8080`
