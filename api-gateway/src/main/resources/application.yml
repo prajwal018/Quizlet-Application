@@ -1,0 +1,49 @@
+server:
+  port: 8222
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "http://localhost:5173"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowed-headers: "*"
+            allow-credentials: true
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: quiz-service
+          uri: lb://QUIZ-SERVICE
+          predicates:
+            - Path=/quiz/**
+          filters:
+            - AuthenticationFilter
+        - id: question-service
+          uri: lb://QUESTION-SERVICE
+          predicates:
+            - Path=/questions/**
+          filters:
+            - AuthenticationFilter
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+  application:
+    name: API-GATEWAY
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+application:
+  config:
+    auth-url: http://localhost:8083/auth/

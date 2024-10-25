@@ -4,7 +4,7 @@ import com.prajwal.question_service.model.Question;
 import com.prajwal.question_service.model.QuestionResponse;
 import com.prajwal.question_service.model.QuestionWrapper;
 import com.prajwal.question_service.repository.QuestionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class QuestionService {
-    @Autowired
-    QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
 
     public ResponseEntity<List<Question>> getQuestions() {
         try {

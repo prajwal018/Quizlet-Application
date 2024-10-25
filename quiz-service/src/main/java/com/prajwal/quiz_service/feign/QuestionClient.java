@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @FeignClient(
-        name = "question-service",
+        name = "question-url",
         url = "${application.config.question-url}")
-public interface QuizInterface {
+public interface QuestionClient {
 
-    @GetMapping("/generate")
-    public ResponseEntity<List<Integer>> generateQuestionForQuiz(@RequestParam String category, @RequestParam Integer numQ);
+    @GetMapping("generate")
+    ResponseEntity<List<Integer>> generateQuestionForQuiz(@RequestParam String category, @RequestParam Integer numQ);
 
-    @PostMapping("/retrieve")
-    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> ids);
+    @PostMapping("retrieve")
+    ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> ids);
 
-    @PostMapping("/score")
-    public ResponseEntity<Integer> getScore(@RequestBody List<QuestionResponse> response);
+    @PostMapping("score")
+    ResponseEntity<Integer> getScore(@RequestBody List<QuestionResponse> response);
 
 }
