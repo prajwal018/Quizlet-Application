@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.3</version>
+		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.prajwal</groupId>
@@ -29,7 +29,7 @@
 	<properties>
 		<java.version>22</java.version>
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
-		<spring-ai.version>1.0.0-M2</spring-ai.version>
+		<!--		<spring-ai.version>1.0.0-M2</spring-ai.version>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -41,6 +41,22 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>10.20.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-database-postgresql</artifactId>
+			<version>10.20.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
@@ -48,10 +64,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.ai</groupId>
-			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
-		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.ai</groupId>-->
+		<!--			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>-->
+		<!--		</dependency>-->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -77,13 +93,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<dependency>
-				<groupId>org.springframework.ai</groupId>
-				<artifactId>spring-ai-bom</artifactId>
-				<version>${spring-ai.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
+			<!--			<dependency>-->
+			<!--				<groupId>org.springframework.ai</groupId>-->
+			<!--				<artifactId>spring-ai-bom</artifactId>-->
+			<!--				<version>${spring-ai.version}</version>-->
+			<!--				<type>pom</type>-->
+			<!--				<scope>import</scope>-->
+			<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 
@@ -103,15 +119,15 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+	<!--	<repositories>-->
+	<!--		<repository>-->
+	<!--			<id>spring-milestones</id>-->
+	<!--			<name>Spring Milestones</name>-->
+	<!--			<url>https://repo.spring.io/milestone</url>-->
+	<!--			<snapshots>-->
+	<!--				<enabled>false</enabled>-->
+	<!--			</snapshots>-->
+	<!--		</repository>-->
+	<!--	</repositories>-->
 
 </project>

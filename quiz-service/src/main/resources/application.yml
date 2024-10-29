@@ -1,32 +1,39 @@
 server:
   port: 8082
+
 eureka:
-  instance:
-    hostname: localhost
   client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+    serviceUrl:
+      defaultZone: http://service-registry:8761/eureka/
+
 spring:
-  ai:
-    ollama:
-      base-url: http://localhost:11434
-      chat:
-        options:
-          model: dolphin-mistral
-          temperature: 0.7
   application:
     name: QUIZ-SERVICE
   datasource:
-    url: jdbc:postgresql://localhost:5432/quizdb
-    username: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/quizdb}           # Uses environment variable with a default
+    username: ${SPRING_DATASOURCE_USERNAME:postgres} # Uses environment variable with a default
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres} # Uses environment variable with a default
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baselineOnMigrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${SPRING_DATASOURCE_USERNAME:postgres} # Uses environment variable with a default
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres} # Uses environment variable with a default
+    repair: true
+  #  ai:
+  #    ollama:
+  #      base-url: http://localhost:11434
+  #      chat:
+  #        options:
+  #          model: dolphin-mistral
+  #          temperature: 0.7
 application:
   config:
-    question-url: http://localhost:8081/questions/
-
+    question-url: http://question-service:8081/questions/

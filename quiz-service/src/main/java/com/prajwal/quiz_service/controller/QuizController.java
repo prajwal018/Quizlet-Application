@@ -6,13 +6,9 @@ import com.prajwal.quiz_service.model.Quiz;
 import com.prajwal.quiz_service.model.QuizDTO;
 import com.prajwal.quiz_service.service.QuizService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ai.chat.messages.UserMessage;
-import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -24,7 +20,7 @@ public class QuizController {
     @Autowired
     QuizService quizService;
 
-    private final OllamaChatModel chatModel;
+//    private final OllamaChatModel chatModel;
 
     //generate new quiz
     @PostMapping("create")
@@ -52,9 +48,9 @@ public class QuizController {
         return quizService.getScore(response);
     }
 
-    @GetMapping("/ai/generate")
-    public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "generate a 10 quiz name on java") String message) {
-        Prompt prompt = new Prompt(new UserMessage(message));
-        return chatModel.stream(prompt).map(response -> response.getResult().getOutput().getContent());
-    }
+//    @GetMapping("/ai/generate")
+//    public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "generate a 10 quiz name on java") String message) {
+//        Prompt prompt = new Prompt(new UserMessage(message));
+//        return chatModel.stream(prompt).map(response -> response.getResult().getOutput().getContent());
+//    }
 }

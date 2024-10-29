@@ -1,21 +1,29 @@
 server:
   port: 8081
+
 eureka:
-  instance:
-    hostname: localhost
   client:
-    service-url:
-      default-zone: http://localhost:8761/eureka/
+    serviceUrl:
+      defaultZone: http://service-registry:8761/eureka/
+
 spring:
   application:
     name: QUESTION-SERVICE
   datasource:
-    url: jdbc:postgresql://localhost:5432/questiondb
-    username: postgres
-    password: postgres
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/questiondb}           # Uses environment variable with a default
+    username: ${SPRING_DATASOURCE_USERNAME:postgres} # Uses environment variable with a default
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres} # Uses environment variable with a default
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baselineOnMigrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${SPRING_DATASOURCE_USERNAME:postgres} # Uses environment variable with a default
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres} # Uses environment variable with a default
+    repair: true
