@@ -52,9 +52,10 @@ services:
       - microservices-network
 
   service-registry:
-    build:
-      context: ./service-registry
-      dockerfile: Dockerfile
+    image: prajwal018/quizletapplication-service-registry:1.0
+    #    build:
+    #      context: ./service-registry
+    #      dockerfile: Dockerfile
     container_name: service-registry
     ports:
       - "8761:8761"
@@ -62,9 +63,10 @@ services:
       - microservices-network
 
   api-gateway:
-    build:
-      context: ./api-gateway
-      dockerfile: Dockerfile
+    image: prajwal018/quizletapplication-api-gateway:1.0
+    #    build:
+    #      context: ./api-gateway
+    #      dockerfile: Dockerfile
     container_name: api-gateway
     ports:
       - "8222:8222"
@@ -74,9 +76,10 @@ services:
       - service-registry
 
   question-service:
-    build:
-      context: ./question-service
-      dockerfile: Dockerfile
+    image: prajwal018/quizletapplication-question-service:1.0
+    #    build:
+    #      context: ./question-service
+    #      dockerfile: Dockerfile
     container_name: question-service
     ports:
       - "8081:8081"
@@ -91,9 +94,10 @@ services:
       - service-registry
 
   auth-service:
-    build:
-      context: ./auth-service
-      dockerfile: Dockerfile
+    image: prajwal018/quizletapplication-auth-service:1.0
+    #    build:
+    #      context: ./auth-service
+    #      dockerfile: Dockerfile
     container_name: auth-service
     ports:
       - "8083:8083"
@@ -108,9 +112,10 @@ services:
       - service-registry
 
   quiz-service:
-    build:
-      context: ./quiz-service
-      dockerfile: Dockerfile
+    image: prajwal018/quizletapplication-quiz-service:1.0
+    #    build:
+    #      context: ./quiz-service
+    #      dockerfile: Dockerfile
     container_name: quiz-service
     ports:
       - "8082:8082"
